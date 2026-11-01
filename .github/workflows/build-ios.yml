@@ -8,15 +8,18 @@ jobs:
     runs-on: macos-14
     steps:
       - uses: actions/checkout@v4
+      - name: Show what is in the repo
+        run: ls -la && xcodebuild -version
       - name: Install XcodeGen
         run: brew install xcodegen
       - name: Generate the Xcode project
         run: xcodegen generate
       - name: Build (unsigned)
         run: |
+          set -o pipefail
           xcodebuild -project Stonebot.xcodeproj -scheme Stonebot -configuration Release \
             -sdk iphoneos -derivedDataPath build \
-            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | tail -n 60
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" 2>&1 | tee build.log
       - name: Package the .ipa
         run: |
           mkdir -p Payload
@@ -26,3 +29,6 @@ jobs:
         with:
           name: Stonebot-ipa
           path: Stonebot.ipa
+      - name: Save the build log
+        if: always()
+        run: grep -E "error:|BUILD|warning: .*(icon|plist)" build.log | head -n 40 || true
