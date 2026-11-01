@@ -1,0 +1,2 @@
+{ "name": "Stonebot", "short_name": "Stonebot", "start_url": "index.html", "display": "standalone",
+  "background_color": "#262522", "theme_color": "#262522", "icons": [ { "src": "icon.png", "sizes": "1024x1024", "type": "image/png" } ] }

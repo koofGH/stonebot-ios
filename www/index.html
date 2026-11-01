@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Stonebot">
+<meta name="theme-color" content="#262522">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon.png">
+<title>Stonebot</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header>
+    <div class="brand"><b>STONEBOT</b><span id="ver"></span></div>
+    <div class="hbtns"><button id="b-new" class="accent">New game</button><button id="b-set">⚙</button></div>
+  </header>
+  <main>
+    <section class="boardcol">
+      <div class="plate" id="plate-top"></div>
+      <div class="boardrow"><div id="evalbar"><div id="evalfill"></div><span id="evaltxt"></span></div><canvas id="board"></canvas></div>
+      <div class="plate" id="plate-bot"></div>
+      <div id="status"></div>
+    </section>
+    <section class="side">
+      <div class="card" id="opp-card"></div>
+      <div class="card"><h4>Your last move</h4><div id="rbadge" class="rbadge">Make a move!</div><div id="rdesc" class="muted">Every move you play gets rated here.</div></div>
+      <div class="card"><h4>Moves</h4><div id="moves"></div></div>
+      <div class="card"><h4>Your game</h4><div id="acc">Accuracy -</div><div id="chips"></div></div>
+      <div class="btnrow"><button id="b-undo">Undo</button><button id="b-flip">Flip</button><button id="b-resign">Resign</button></div>
+    </section>
+  </main>
+</div>
+<div id="sheets"></div>
+<div id="toast"></div>
+<script src="stonebot.js"></script>
+</body>
+</html>
